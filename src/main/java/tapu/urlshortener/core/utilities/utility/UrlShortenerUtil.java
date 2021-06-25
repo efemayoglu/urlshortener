@@ -27,7 +27,7 @@ public  class UrlShortenerUtil {
 
         throw new RuntimeException("URL Invalid: " + url);
     }
-    //// TODO: 26.06.2021 Don't throw it Wrap with ErrorResult  
+    //// TODO: 26.06.2021 Don't throw it Wrap with ErrorResult
     public String getUrl(String id) {
 
         String url = "https://www.google.com";

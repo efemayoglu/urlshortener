@@ -1,9 +1,9 @@
-package tapu.urlshortener.businessTests;
+package tapu.urlshortener.business;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tapu.urlshortener.businessTests.abstracts.LoginService;
+import tapu.urlshortener.business.abstracts.LoginService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,10 +1,10 @@
-package tapu.urlshortener.businessTests;
+package tapu.urlshortener.business;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tapu.urlshortener.businessTests.abstracts.UrlMapService;
-import tapu.urlshortener.businessTests.abstracts.UrlService;
+import tapu.urlshortener.business.abstracts.UrlMapService;
+import tapu.urlshortener.business.abstracts.UrlService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

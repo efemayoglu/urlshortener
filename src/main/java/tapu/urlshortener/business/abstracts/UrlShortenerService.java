@@ -1,4 +1,4 @@
-package tapu.urlshortener.businessTests.abstracts;
+package tapu.urlshortener.business.abstracts;
 
 public interface UrlShortenerService {
 

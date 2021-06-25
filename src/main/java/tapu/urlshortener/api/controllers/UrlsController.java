@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tapu.urlshortener.businessTests.abstracts.UrlMapService;
+import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.core.utilities.results.DataResult;
 import tapu.urlshortener.entities.dtos.UserWithUrlMap;
 
@@ -27,7 +27,7 @@ public class UrlsController {
         return this.urlMapService.getByCreatedUser(userId);
     }
     //// TODO: 26.06.2021 add create operation for url 
-    //// TODO: 26.06.2021 should not be repeated values for shortener link 
+    //// TODO: 26.06.2021 should not be repeated values for shortener link
 
 
 

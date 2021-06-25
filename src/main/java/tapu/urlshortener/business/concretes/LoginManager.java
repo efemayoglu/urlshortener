@@ -1,8 +1,8 @@
-package tapu.urlshortener.businessTests.concretes;
+package tapu.urlshortener.business.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tapu.urlshortener.businessTests.abstracts.LoginService;
+import tapu.urlshortener.business.abstracts.LoginService;
 import tapu.urlshortener.core.utilities.results.DataResult;
 import tapu.urlshortener.core.utilities.results.ErrorDataResult;
 import tapu.urlshortener.core.utilities.results.SuccessDataResult;

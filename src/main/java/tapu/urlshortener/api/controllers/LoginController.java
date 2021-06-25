@@ -7,9 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import tapu.urlshortener.businessTests.abstracts.LoginService;
+import tapu.urlshortener.business.abstracts.LoginService;
 import tapu.urlshortener.core.utilities.results.ErrorDataResult;
-import tapu.urlshortener.entities.concretes.User;
 import tapu.urlshortener.entities.dtos.LoginRequest;
 
 import javax.validation.Valid;

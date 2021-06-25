@@ -1,6 +1,6 @@
-package tapu.urlshortener.businessTests.concretes;
+package tapu.urlshortener.business.concretes;
 
-import tapu.urlshortener.businessTests.abstracts.UrlShortenerService;
+import tapu.urlshortener.business.abstracts.UrlShortenerService;
 
 public class UrlShortenerManager implements UrlShortenerService {
     @Override
