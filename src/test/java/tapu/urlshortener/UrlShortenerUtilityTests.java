@@ -25,7 +25,6 @@ public class UrlShortenerUtilityTests {
 
         assertEquals(result, expectedValue);
 
-      // String toLink = UrlShortener.idToShortURL("www.google.com");
     }
     @Test
     public void shouldGetLink(){
@@ -38,6 +37,5 @@ public class UrlShortenerUtilityTests {
 
         assertEquals(result, expectedValue);
 
-        // String toLink = UrlShortener.idToShortURL("www.google.com");
     }
 }

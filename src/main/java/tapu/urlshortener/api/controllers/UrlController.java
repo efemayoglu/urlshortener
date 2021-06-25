@@ -1,33 +1,27 @@
 package tapu.urlshortener.api.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tapu.urlshortener.businessTests.abstracts.UrlMapService;
-import tapu.urlshortener.core.utilities.results.DataResult;
-import tapu.urlshortener.entities.dtos.UserWithUrlMap;
-
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/urls")
+@RequestMapping("")
+
 public class UrlController {
+    
+    @GetMapping("/{id}")
+    public String getUrl(@PathVariable String id){
+        //// TODO: 26.06.2021 Get DB or Redis
+        String url = "";
 
-    private UrlMapService urlMapService;
+        System.out.println("url retrieved:"+url);
 
-    @Autowired
-    public UrlController(UrlMapService urlMapService){
-        this.urlMapService = urlMapService;
+        //// TODO: 26.06.2021 handle this throw
+        if (url == null)
+            throw new RuntimeException("there is no shorter url for:"+id);
+
+        return url;
     }
-
-    @GetMapping("/getByCreatedUser")
-    public DataResult<List<UserWithUrlMap>> getByCreatedUser(@RequestParam int userId){
-        return this.urlMapService.getByCreatedUser(userId);
-    }
-
-
-
-
+    
 }
