@@ -19,6 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","urls"})
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

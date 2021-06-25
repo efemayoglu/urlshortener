@@ -1,8 +1,9 @@
-package tapu.urlshortener.business.concretes;
+package tapu.urlshortener.businessTests.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tapu.urlshortener.business.abstracts.UrlMapService;
+import tapu.urlshortener.businessTests.abstracts.UrlMapService;
+import tapu.urlshortener.businessTests.abstracts.UrlService;
 import tapu.urlshortener.core.utilities.results.DataResult;
 import tapu.urlshortener.core.utilities.results.SuccessDataResult;
 import tapu.urlshortener.dataAccess.abstracts.UrlDao;
@@ -12,7 +13,7 @@ import tapu.urlshortener.entities.dtos.UserWithUrlMap;
 import java.util.List;
 
 @Service
-public class UrlManager implements UrlMapService {
+public class UrlManager implements UrlMapService, UrlService {
     private UrlDao urlDao;
 
     @Autowired
@@ -26,4 +27,8 @@ public class UrlManager implements UrlMapService {
         return new SuccessDataResult<>(urlDao.getUrlsByCreatedUserId(userId),"Urls Successfully listed by userId");
     }
 
+    @Override
+    public DataResult<Url>  getUrlByFromLink(String fromLink) {
+        return new SuccessDataResult<>(urlDao.getUrlByFromLink(fromLink));
+    }
 }

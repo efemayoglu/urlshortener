@@ -8,12 +8,12 @@ import tapu.urlshortener.businessTests.abstracts.LoginService;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class LoginTests {
+public class LoginServiceTests {
 
     private LoginService loginService;
 
     @Autowired
-    public LoginTests(LoginService loginService){
+    public LoginServiceTests(LoginService loginService){
         this.loginService = loginService;
     }
 

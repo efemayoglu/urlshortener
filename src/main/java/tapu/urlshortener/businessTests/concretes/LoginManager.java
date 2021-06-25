@@ -1,8 +1,8 @@
-package tapu.urlshortener.business.concretes;
+package tapu.urlshortener.businessTests.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tapu.urlshortener.business.abstracts.LoginService;
+import tapu.urlshortener.businessTests.abstracts.LoginService;
 import tapu.urlshortener.core.utilities.results.DataResult;
 import tapu.urlshortener.core.utilities.results.ErrorDataResult;
 import tapu.urlshortener.core.utilities.results.SuccessDataResult;
@@ -23,7 +23,7 @@ public class LoginManager implements LoginService {
     public DataResult<User> getByUsernameAndPassword(String username, String password) {
         var result = userDao.getByUsernameAndPassword(username, password);
         if(result == null)
-            return new ErrorDataResult<User>("username or password are wrong");
+            return new ErrorDataResult<>("username or password is wrong");
         return new SuccessDataResult<>(result);
     }
 }

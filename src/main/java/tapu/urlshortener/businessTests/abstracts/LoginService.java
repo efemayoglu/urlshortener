@@ -1,4 +1,4 @@
-package tapu.urlshortener.business.abstracts;
+package tapu.urlshortener.businessTests.abstracts;
 
 import tapu.urlshortener.core.utilities.results.DataResult;
 import tapu.urlshortener.entities.concretes.User;

@@ -11,7 +11,9 @@ import java.util.List;
 
 public interface UrlDao extends JpaRepository<Url, Integer> {
 
-    List<Url> getUrlsByCreatedUser(int userId);
+    //List<Url> getUrlsByCreatedUser(int userId);
+
+    Url getUrlByFromLink(String fromLink);
 
 
     @Query("select new tapu.urlshortener.entities.dtos.UserWithUrlMap(us.id, ur.id, us.username, ur.fromLink, ur.toLink) from User us inner join us.urls ur where us.id = :userId")
