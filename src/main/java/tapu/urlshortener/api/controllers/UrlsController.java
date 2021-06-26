@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.business.abstracts.UrlService;
 import tapu.urlshortener.core.utilities.results.DataResult;
+import tapu.urlshortener.core.utilities.results.Result;
 import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.dtos.CreateLinkRequest;
+import tapu.urlshortener.entities.dtos.DeleteLinkRequest;
 import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
 import java.util.List;
@@ -31,12 +33,15 @@ public class UrlsController {
     //// TODO: 26.06.2021 add create operation for url 
     //// TODO: 26.06.2021 should not be repeated values for shortener link
 
-    @PostMapping("add")
-    public DataResult<Url> addUrl(@RequestBody CreateLinkRequest request){
-
-        return this.urlService.addUrl(request.getToLink());
+    @PostMapping("/add")
+    public Result addUrl(@RequestBody CreateLinkRequest request){
+        return this.urlMapService.addUrlIntoUser(request.getUserId(), request.getToLink());
     }
 
+    @DeleteMapping("/delete")
+    public Result deleteUrl(@RequestBody DeleteLinkRequest request){
+        return this.urlMapService.deleteUrlFromUser(request.getUserId(), request.getUrlId());
+    }
 
 
 

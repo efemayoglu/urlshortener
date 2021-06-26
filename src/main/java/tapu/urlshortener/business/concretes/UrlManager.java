@@ -38,21 +38,40 @@ public class UrlManager implements UrlService {
     }
 
     @Override
-    public DataResult<Url> addUrl(String toLink) {
+    public DataResult<Url> getUrlByToLink(String toLink) {
+        return new SuccessDataResult<>(urlDao.getUrlByToLink(toLink));
+    }
 
+    @Override
+    public DataResult<Url> getById(int id) {
+        var result = urlDao.getById(id);
+        if(result != null)
+            return new SuccessDataResult<>(result);
+        return new ErrorDataResult<>("url could not found");
+    }
+
+    @Override
+    public Url addUrlOrGet(String toLink) {
+        return addUrlOrGetExists(toLink);
+    }
+
+    @Override
+    public List<UserWithUrlMapResponse> getUrlsByCreatedUserId(int userId) {
+        return urlDao.getUrlsByCreatedUserId(userId);
+    }
+
+    private Url addUrlOrGetExists(String toLink) {
         var isExist = urlDao.getUrlByToLink(toLink);
 
-        if(isExist != null){
-            return new ErrorDataResult("Already exist.");
-        } else{
+        if (isExist != null) {
+            return isExist;
+        } else {
             var fromLink = urlShortenerUtilService.create(toLink);
             var url = new Url();
             url.setFromLink(fromLink);
             url.setToLink(toLink);
             var result = urlDao.save(url);
-            System.out.println(result.getId());
-            return new SuccessDataResult<>(result);
+            return result;
         }
-
     }
 }

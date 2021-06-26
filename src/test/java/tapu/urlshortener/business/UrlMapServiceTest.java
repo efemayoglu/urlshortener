@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.business.abstracts.UrlService;
-import tapu.urlshortener.entities.concretes.Url;
+import tapu.urlshortener.business.abstracts.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,11 +14,13 @@ class UrlMapServiceTest {
 
     private UrlMapService mapService;
     private UrlService urlService;
+    private UserService userService;
 
     @Autowired
-    public UrlMapServiceTest(UrlMapService mapService, UrlService urlService){
+    public UrlMapServiceTest(UrlMapService mapService, UrlService urlService, UserService userService){
         this.mapService = mapService;
         this.urlService = urlService;
+        this.userService = userService;
     }
 
     @Test
@@ -33,8 +35,8 @@ class UrlMapServiceTest {
 
     @Test
     void shouldFindUrlByFromLink(){
-        final String fromLink = "www.mylink.com/abc";
-        final String expectedValue = "www.google.com";
+        final String fromLink = "ca2c5aeb";
+        final String expectedValue = "https://www.facebook.com/";
         final String unexpectedValue = "www.google.com1";
 
         var result = urlService.getUrlByFromLink(fromLink);
@@ -45,14 +47,32 @@ class UrlMapServiceTest {
     }
 
     @Test
-    void shouldAddUrlIntoUser(){
+    void shouldNotAddUrlIntoUser(){
         final int userId = 1;
-        final int toLinkId = 5;
+        final String toLinkId = "https://www.facebook.com";
+
+        //var user = userService.getById(userId);
+        //var url = urlService.getById(toLinkId);
 
         var result = mapService.addUrlIntoUser(userId, toLinkId);
 
-        assertTrue(result.isSuccess());
+        System.out.println(result.isSuccess());
+        assertFalse(result.isSuccess());
 
     }
 
+    @Test
+    void shouldAddUrlIntoUser(){
+        final int userId = 1;
+        final String toLinkId = "https://www.facebook.com/";
+
+        //var user = userService.getById(userId);
+        //var url = urlService.getById(toLinkId);
+
+        var result = mapService.addUrlIntoUser(userId, toLinkId);
+
+        System.out.println(result.isSuccess());
+        assertTrue(result.isSuccess());
+
+    }
 }

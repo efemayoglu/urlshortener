@@ -14,6 +14,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     User getUserById(int userId);
 
+
+
     /*@Query("select new tapu.urlshortener.entities.concretes.User() from User us inner join us.urls ur where us.id = :userId")
     List<UserWithUrlMapResponse> getUserWithUrls(@Param("userId") int userId);*/
 

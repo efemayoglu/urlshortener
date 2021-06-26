@@ -5,4 +5,7 @@ import tapu.urlshortener.entities.concretes.User;
 
 public interface UserService {
     Result add(User user);
+    User getById(int id);
+    User getUserById(int id);
+    User save(User user);
 }

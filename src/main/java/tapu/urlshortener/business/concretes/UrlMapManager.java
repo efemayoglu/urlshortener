@@ -3,72 +3,125 @@ package tapu.urlshortener.business.concretes;
 
 import org.springframework.stereotype.Service;
 import tapu.urlshortener.business.abstracts.UrlMapService;
-import tapu.urlshortener.core.utilities.results.DataResult;
-import tapu.urlshortener.core.utilities.results.Result;
-import tapu.urlshortener.core.utilities.results.SuccessDataResult;
-import tapu.urlshortener.core.utilities.results.SuccessResult;
+import tapu.urlshortener.business.abstracts.UrlService;
+import tapu.urlshortener.business.abstracts.UserService;
+import tapu.urlshortener.core.utilities.results.*;
+import tapu.urlshortener.core.utilities.utility.UrlShortenerUtilService;
 import tapu.urlshortener.dataAccess.abstracts.UrlDao;
 import tapu.urlshortener.dataAccess.abstracts.UserDao;
 import tapu.urlshortener.entities.concretes.Url;
+import tapu.urlshortener.entities.concretes.User;
 import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UrlMapManager implements UrlMapService {
 
-    private UrlDao urlDao;
-    private UserDao userDao;
+    private UserService userService;
+    private UrlService urlService;
+    private UrlShortenerUtilService urlShortenerUtilService;
 
-    public UrlMapManager(UrlDao urlDao, UserDao userDao) {
-        this.urlDao = urlDao;
-        this.userDao = userDao;
+    public UrlMapManager(UrlService urlService, UserService userService, UrlShortenerUtilService urlShortenerUtilService) {
+        this.urlService = urlService;
+        this.userService = userService;
+        this.urlShortenerUtilService = urlShortenerUtilService;
     }
 
     @Override
     public DataResult<List<UserWithUrlMapResponse>> getByCreatedUser(int userId) {
-        return new SuccessDataResult<>(urlDao.getUrlsByCreatedUserId(userId));
+        return new SuccessDataResult<>(urlService.getUrlsByCreatedUserId(userId));
     }
 
+    public Result addUrlIntoUser(int userId, String toLink){
+        var userDataResult = checkUserById(userId);
+        if(userDataResult.isSuccess()){
+            return addOrUpdateUserUrl(userDataResult.getData(), toLink);
+        }
+        return new ErrorResult("User could not found.");
+    }
+
+
+
     @Override
-    public Result addUrlIntoUser(int userId, int urlId) {
+    public Result deleteUrlFromUser(int userId, int urlId) {
+        var userDataResult = checkUserById(userId);
 
-        var user = userDao.getUserById(userId);
-        var url = urlDao.getUrlById(urlId);
-        var urls = user.getUrls().add(url);
+        if(userDataResult.isSuccess()){
+            var checkUrlResult = checkUrlByToLink(urlId);
+            if(checkUrlResult.isSuccess()){
+                return deleteUrlFromUser(userDataResult.getData(), checkUrlResult.getData());
+            }
+            return checkUrlResult;
+        }
+        return new ErrorResult("User could not found.");
+    }
+    private Result deleteUrlFromUser(User user, Url url){
+        var errorResult = checkUserHasUrl(user, url);
+        if(errorResult.isSuccess()){
+            user.getUrls().removeIf(t-> t.getId() == url.getId());
+            userService.save(user);
+            return new SuccessResult("Url deleted successfully");
+        }
+        return errorResult;
 
-        userDao.save(user);
+    }
 
-        //var users = url.getCreatedUser();
+    private DataResult<Url> checkUrlByToLink(int urlId){
+        var urlIsExist = urlService.getById(urlId);
+        if(urlIsExist.isSuccess()){
+            return new SuccessDataResult<>(urlIsExist.getData());
+        }
+        return new ErrorDataResult<>("Url could not find.");
+    }
 
 
+    private DataResult<User> checkUserById(int userId){
+        var user = userService.getUserById(userId);
+        if(user!= null){
+            return new SuccessDataResult<>(user);
+        }
+        return new ErrorDataResult<>("User could not found.");
+    }
 
-        /*
-        var userUrls = user.getUrls();
 
-        var urls = urlDao.getUrlsByCreatedUserId(userId);
+    private Result addOrUpdateUserUrl(User user, String toLink){
+        var url = urlService.addUrlOrGet(toLink);
+        //var user = userService.getUserById(userId);
 
-        Set<Url> newUrls = new HashSet<>();
-        for (UserWithUrlMapResponse u : urls){
-            var newUrl = new Url();
-            newUrl.setToLink(u.getToLink());
-            newUrl.setFromLink(u.getFromLink());
-            newUrls.add(newUrl);
+        var result = getErrorResult(user, url);
+
+        if(result.isSuccess()){
+            return addUrlIntoUser(user, url);
+        }else{
+            return result;
         }
 
-        var newUrl = new Url();
+    }
 
-        newUrl.setToLink(url.getToLink());
-        newUrl.setFromLink(url.getFromLink());
-        newUrls.add(newUrl);
+    private Result addUrlIntoUser(User user, Url url) {
+        var isAdded = user.getUrls().add(url);
 
-        user.setUrls(newUrls);
+        if(isAdded) {
+            userService.save(user);
+            return new SuccessResult("Url is added into the user urls");
+        }else{
+            return new ErrorResult("Url is not added into the user");
+        }
+    }
 
-        userDao.save(user);
-*/
-        return  new SuccessResult();
+    private Result getErrorResult(User user, Url url) {
+        if(user.getUrls().stream().filter(u -> u.getId() == url.getId() )
+                .findAny().orElse(null) != null){
+            return new ErrorResult("The user is already has the url");
+        }
+        return new SuccessResult();
+    }
+    private Result checkUserHasUrl(User user, Url url) {
+        if(user.getUrls().stream().filter(u -> u.getId() == url.getId() )
+                .findAny().orElse(null) == null){
+            return new ErrorResult("The url already been removed for current user.");
+        }
+        return new SuccessResult();
     }
 }

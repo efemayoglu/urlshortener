@@ -24,4 +24,19 @@ public class UserManager implements UserService {
         return new SuccessDataResult<>(userDao.save(user));
     }
 
+    @Override
+    public User getById(int id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    public User save(User user) {
+        return userDao.save(user);
+    }
+
 }
