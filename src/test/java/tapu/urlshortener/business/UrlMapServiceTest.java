@@ -47,11 +47,11 @@ class UrlMapServiceTest {
     @Test
     void shouldAddUsersUrl(){
         final int userId = 1;
-        final String toLink = "https://facebook.com";
-        //urlService.createUrl(toLink);
-        ///ar result = mapService.createUserWithUrl(userId, toLink);
+        final int toLinkId = 5;
 
-       // assertTrue(result.isSuccess());
+        var result = mapService.addUrlInUser(userId, toLinkId);
+
+        assertTrue(result.isSuccess());
 
     }
 

@@ -7,4 +7,5 @@ public interface UrlService {
 
     DataResult<Url> getUrlByFromLink(String fromLink);
 
+    DataResult<Url> addUrl(String toLink);
 }

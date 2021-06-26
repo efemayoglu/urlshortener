@@ -11,7 +11,7 @@ import com.google.common.hash.Hashing;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
-public  class UrlShortenerUtilManager {
+public  class UrlShortenerUtilManager implements UrlShortenerUtilService {
 
     public String create(String url) {
         UrlValidator urlValidator = new UrlValidator(
