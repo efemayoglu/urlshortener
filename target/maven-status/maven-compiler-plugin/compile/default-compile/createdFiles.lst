@@ -1,10 +1,3 @@
-tapu/urlshortener/businessTests/concretes/UserManager.class
-tapu/urlshortener/api/controllers/UrlController.class
-tapu/urlshortener/businessTests/abstracts/UserService.class
-tapu/urlshortener/entities/concretes/Url.class
-tapu/urlshortener/businessTests/abstracts/UrlMapService.class
-tapu/urlshortener/businessTests/concretes/LoginManager.class
 tapu/urlshortener/dataAccess/abstracts/UrlDao.class
-tapu/urlshortener/businessTests/abstracts/UrlService.class
-tapu/urlshortener/businessTests/abstracts/LoginService.class
-tapu/urlshortener/businessTests/concretes/UrlManager.class
+tapu/urlshortener/api/controllers/UrlController.class
+tapu/urlshortener/entities/concretes/Url.class

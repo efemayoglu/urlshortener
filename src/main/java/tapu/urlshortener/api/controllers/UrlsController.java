@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.core.utilities.results.DataResult;
-import tapu.urlshortener.entities.dtos.UserWithUrlMap;
+import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class UrlsController {
     }
 
     @GetMapping("/getByCreatedUser")
-    public DataResult<List<UserWithUrlMap>> getByCreatedUser(@RequestParam int userId){
+    public DataResult<List<UserWithUrlMapResponse>> getByCreatedUser(@RequestParam int userId){
         return this.urlMapService.getByCreatedUser(userId);
     }
     //// TODO: 26.06.2021 add create operation for url 
