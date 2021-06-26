@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserWithUrlMap {
+public class UserWithUrlMapDto {
 
     private int userId;
     private int urlId;

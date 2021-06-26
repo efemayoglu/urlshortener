@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.business.abstracts.UrlService;
+import tapu.urlshortener.entities.concretes.Url;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,7 +27,7 @@ class UrlMapServiceTest {
 
     @Test
     void shouldFindUrlsByUserId(){
-        var result = mapService.getByCreatedUser(1);
+        var result = urlService.getByCreatedUser(1);
         assertTrue(result.getData().size() > 0);
     }
 
@@ -41,6 +42,17 @@ class UrlMapServiceTest {
         System.out.println(result.getData().getFromLink());
         assertTrue(result.getData().getToLink().equals(expectedValue));
         assertFalse(result.getData().getToLink().equals(unexpectedValue));
+    }
+
+    @Test
+    void shouldAddUsersUrl(){
+        final int userId = 1;
+        final String toLink = "https://facebook.com";
+        //urlService.createUrl(toLink);
+        var result = mapService.createUserWithUrl(userId, toLink);
+
+        assertTrue(result.isSuccess());
+
     }
 
 }
