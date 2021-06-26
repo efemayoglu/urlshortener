@@ -34,10 +34,20 @@ public class UrlMapManager implements UrlMapService {
     }
 
     @Override
-    public Result addUrlInUser(int userId, int urlId) {
+    public Result addUrlIntoUser(int userId, int urlId) {
 
         var user = userDao.getUserById(userId);
         var url = urlDao.getUrlById(urlId);
+        var urls = user.getUrls().add(url);
+
+        userDao.save(user);
+
+        //var users = url.getCreatedUser();
+
+
+
+        /*
+        var userUrls = user.getUrls();
 
         var urls = urlDao.getUrlsByCreatedUserId(userId);
 
@@ -58,7 +68,7 @@ public class UrlMapManager implements UrlMapService {
         user.setUrls(newUrls);
 
         userDao.save(user);
-
+*/
         return  new SuccessResult();
     }
 }

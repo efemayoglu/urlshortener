@@ -45,11 +45,11 @@ class UrlMapServiceTest {
     }
 
     @Test
-    void shouldAddUsersUrl(){
+    void shouldAddUrlIntoUser(){
         final int userId = 1;
         final int toLinkId = 5;
 
-        var result = mapService.addUrlInUser(userId, toLinkId);
+        var result = mapService.addUrlIntoUser(userId, toLinkId);
 
         assertTrue(result.isSuccess());
 

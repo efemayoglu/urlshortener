@@ -1,7 +1,10 @@
 package tapu.urlshortener.entities.concretes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +16,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "url_maps")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Url {
 
     @Id
@@ -20,14 +25,8 @@ public class Url {
     @Column(name = "url_id")
     private int id;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_url_map",
-            joinColumns = @JoinColumn(name = "url_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> createdUser;
-
+    @ManyToMany(mappedBy = "urls", fetch = FetchType.LAZY)
+    private Set<User> createdUser = new HashSet<User>();
 
     @Column(name = "url_fromLink")
     @NotBlank

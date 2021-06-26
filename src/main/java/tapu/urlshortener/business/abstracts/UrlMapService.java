@@ -10,5 +10,5 @@ import java.util.List;
 public interface UrlMapService {
     DataResult<List<UserWithUrlMapResponse>> getByCreatedUser(int userId);
 
-    Result addUrlInUser(int userId, int urlId);
+    Result addUrlIntoUser(int userId, int urlId);
 }
