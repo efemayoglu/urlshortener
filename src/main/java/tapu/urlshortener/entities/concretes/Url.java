@@ -28,12 +28,12 @@ public class Url {
     @ManyToMany(mappedBy = "urls", fetch = FetchType.LAZY)
     private Set<User> createdUser = new HashSet<User>();
 
-    @Column(name = "url_from_Link")
+    @Column(name = "url_from_link")
     @NotBlank
     @NotNull
     private String fromLink;
 
-    @Column(name = "url_to_Link")
+    @Column(name = "url_to_link")
     @NotBlank
     @NotNull
     private String toLink;
