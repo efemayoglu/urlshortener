@@ -5,8 +5,10 @@
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/core/utilities/utility/UrlShortenerUtilService.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/entities/dtos/UserWithUrlMapResponse.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/core/utilities/results/SuccessResult.java
+/home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/RedirectController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/abstracts/UrlService.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/abstracts/LoginService.java
+/home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/entities/dtos/DeleteLinkRequest.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/core/utilities/results/ErrorResult.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/core/utilities/results/DataResult.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/core/utilities/utility/UrlShortenerUtilManager.java
@@ -22,7 +24,6 @@
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/LoginController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/UsersController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/abstracts/UserService.java
-/home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/UrlController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/core/utilities/results/Result.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/UrlsController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/UrlShortenerApplication.java

@@ -1,3 +1,2 @@
 tapu/urlshortener/dataAccess/abstracts/UrlDao.class
-tapu/urlshortener/api/controllers/UrlController.class
 tapu/urlshortener/entities/concretes/Url.class
