@@ -6,21 +6,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.business.abstracts.UrlService;
 import tapu.urlshortener.business.abstracts.UserService;
+import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.concretes.User;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UrlMapServiceTest {
+class UrlMapServiceIntegrationTest {
 
     private UrlMapService mapService;
     private UrlService urlService;
     private UserService userService;
 
     @Autowired
-    public UrlMapServiceTest(UrlMapService mapService, UrlService urlService, UserService userService){
+    public UrlMapServiceIntegrationTest(UrlMapService mapService, UrlService urlService, UserService userService){
         this.mapService = mapService;
         this.urlService = urlService;
         this.userService = userService;
@@ -38,30 +40,40 @@ class UrlMapServiceTest {
 
     @Test
     void shouldFindUrlByFromLink(){
-        final String fromLink = "ca2c5aeb";
-        final String expectedValue = "https://www.facebook.com/";
-        final String unexpectedValue = "www.google.com1";
+        String toLink ="https://www."+ UUID.randomUUID()+".com";
 
-        var result = urlService.getUrlByFromLink(fromLink);
+        Url addedUrl = urlService.addUrlOrGet(toLink);
+        assertNotNull(addedUrl);
 
-        System.out.println(result.getData().getFromLink());
-        assertTrue(result.getData().getToLink().equals(expectedValue));
-        assertFalse(result.getData().getToLink().equals(unexpectedValue));
+        var result = urlService.getUrlByFromLink(addedUrl.getFromLink());
+
+        assertNotNull(result);
+        assertNotNull(result.getData());
+        assertTrue(result.isSuccess());
+        assertNotEquals(0, result.getData().getId());
     }
 
     @Test
-    void shouldNotAddUrlIntoUser(){
-        final int userId = 1;
-        final String toLinkId = "https://www.facebook.com";
+    void shouldNotAddTheSameUrlIntoSameUser(){
 
-        //var user = userService.getById(userId);
-        //var url = urlService.getById(toLinkId);
+        String username = UUID.randomUUID().toString();
+        String password = UUID.randomUUID().toString();
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
 
-        var result = mapService.addUrlIntoUser(userId, toLinkId);
+        String toLink ="https://www."+ UUID.randomUUID()+".com";
 
-        System.out.println(result.isSuccess());
+        Url addedUrl = urlService.addUrlOrGet(toLink);
+        assertNotNull(addedUrl);
+
+        user.setUrls(Arrays.asList(addedUrl));
+
+        User addedUser = userService.save(user);
+        assertNotNull(addedUrl);
+
+        var result = mapService.addUrlIntoUser(addedUser.getId(), toLink);
         assertFalse(result.isSuccess());
-
     }
 
     @Test
