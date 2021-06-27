@@ -37,14 +37,6 @@ class UrlMapManagerTest {
     @Mock
     private UrlShortenerUtilService urlShortenerUtilService;
 
-//        when(resultInstance.isSuccess()).thenReturn(true);
-
-    // when(mapManager.addUrlIntoUser(userId, toLink)).thenReturn(resultInstance);
-    // when(urlService.addUrlOrGet(toLink)).thenReturn(url);
-
-    // when(userManager.save(any(User.class))).thenReturn(user);
-
-
     @Test
     void addUrlIntoUser() {
         User user = mock(User.class);
