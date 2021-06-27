@@ -13,6 +13,7 @@ import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.concretes.User;
 import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -59,7 +60,12 @@ public class UrlMapManager implements UrlMapService {
     private Result deleteUrlFromUser(User user, Url url){
         var errorResult = checkUserHasUrl(user, url);
         if(errorResult.isSuccess()){
-            user.getUrls().removeIf(t-> t.getId() == url.getId());
+            var newUrls = new HashSet<Url>();
+            for(Url u: user.getUrls()){
+                if(u.getId() == url.getId())continue;
+                newUrls.add(u);
+            }
+            //user.getUrls().removeIf(t-> t.getId() == url.getId());
             userService.save(user);
             return new SuccessResult("Url deleted successfully");
         }
@@ -117,7 +123,7 @@ public class UrlMapManager implements UrlMapService {
         }
         return new SuccessResult();
     }
-    private Result checkUserHasUrl(User user, Url url) {
+    public Result checkUserHasUrl(User user, Url url) {
         if(user.getUrls().stream().filter(u -> u.getId() == url.getId() )
                 .findAny().orElse(null) == null){
             return new ErrorResult("The url already been removed for current user.");

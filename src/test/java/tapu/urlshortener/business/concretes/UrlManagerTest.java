@@ -45,23 +45,6 @@ class UrlManagerTest {
     void getById() {
 
     }
-    /*Url url = new Url();
-         url.setToLink("https://www.google.com");
-         url.setFromLink("");
-
-         User user1 = new User();
-         user1.setUsername("test-user-1");
-         user1.setPassword("123456");
-
-         User user2 = new User();
-         user2.setUsername("test-user-2");
-         user2.setPassword("12345");
-
-         HashSet<User> users = new HashSet<>();
-         users.add(user1);
-         users.add(user2);
-
-         url.setCreatedUser(users);*/
     @Test
     void addUrlOrGet() {
 
@@ -77,6 +60,26 @@ class UrlManagerTest {
         assertEquals(result.getToLink(), toLink);
     }
 
+  /*  @Test
+    void addUrlOrGetExists() {
+        String toLink = "https://www.google.com";
+        Url urlMock = mock(Url.class);
+
+        int expectedId = 57;
+
+     //   when(urlDao.getUrlByToLink(ArgumentMatchers.any(String.class))).thenReturn(urlMock);
+        Url result = urlServiceManager.addUrlOrGet(toLink);
+
+        when(urlServiceManager.addUrlOrGet(ArgumentMatchers.any(String.class))).thenReturn(urlMock);
+
+
+
+        when(result.getToLink()).thenReturn(toLink);
+        when(result.getId()).thenReturn(expectedId);
+
+        assertEquals(result.getToLink(), toLink);
+        assertEquals(expectedId, result.getId());
+    }*/
     @Test
     void getUrlsByCreatedUserId() {
     }
