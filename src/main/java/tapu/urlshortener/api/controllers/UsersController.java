@@ -28,10 +28,7 @@ public class UsersController {
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody UserCreateRequest request) {
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(request.getPassword());
         return ResponseEntity.ok(
-                this.userService.save(user));
+                this.userService.save(request));
     }
 }

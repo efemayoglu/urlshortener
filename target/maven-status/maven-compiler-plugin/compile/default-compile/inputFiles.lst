@@ -28,3 +28,4 @@
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/UrlsController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/UrlShortenerApplication.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/concretes/UrlMapManager.java
+/home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/entities/dtos/UserCreateRequest.java
