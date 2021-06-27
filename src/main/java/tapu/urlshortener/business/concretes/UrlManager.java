@@ -61,15 +61,16 @@ public class UrlManager implements UrlService {
     }
 
     private Url addUrlOrGetExists(String toLink) {
-        var isExist = urlDao.getUrlByToLink(toLink);
+        var validLink = urlShortenerUtilService.getValidUrl(toLink);
+        var isExist = urlDao.getUrlByToLink(validLink);
 
         if (isExist != null) {
             return isExist;
         } else {
-            var fromLink = urlShortenerUtilService.create(toLink);
+            var fromLink = urlShortenerUtilService.create(validLink);
             var url = new Url();
             url.setFromLink(fromLink);
-            url.setToLink(toLink);
+            url.setToLink(validLink);
             var result = urlDao.save(url);
             return result;
         }
