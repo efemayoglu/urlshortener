@@ -6,6 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.business.abstracts.UrlService;
 import tapu.urlshortener.business.abstracts.UserService;
+import tapu.urlshortener.entities.concretes.User;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,15 +66,18 @@ class UrlMapServiceTest {
 
     @Test
     void shouldAddUrlIntoUser(){
-        final int userId = 1;
-        final String toLinkId = "https://www.facebook.com/";
 
-        //var user = userService.getById(userId);
-        //var url = urlService.getById(toLinkId);
+        User user = new User();
+        user.setUsername(UUID.randomUUID().toString());
+        user.setPassword(UUID.randomUUID().toString());
 
-        var result = mapService.addUrlIntoUser(userId, toLinkId);
+        var addedUser = userService.save(user);
+        assertNotNull(addedUser);
 
-        System.out.println(result.isSuccess());
+        final String toLink = "https://www."+UUID.randomUUID()+".com/";
+
+        var result = mapService.addUrlIntoUser(addedUser.getId(), toLink);
+        assertNotNull(result);
         assertTrue(result.isSuccess());
 
     }

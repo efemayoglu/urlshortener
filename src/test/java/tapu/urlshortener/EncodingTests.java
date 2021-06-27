@@ -47,8 +47,6 @@ public class EncodingTests {
         String url1 = urlShortenerUtilService.getUrl("https://en.wikipedia.org/wiki/Alaca_H%C3%B6y%C3%BCk");
         String url2 = urlShortenerUtilService.getUrl("https://en.wikipedia.org/wiki/Alaca_Höyük");
 
-        String expected = "d085f9ed";
-
         String id1 = urlShortenerUtilService.create(url1);
         String id2= urlShortenerUtilService.create(url1);
 
