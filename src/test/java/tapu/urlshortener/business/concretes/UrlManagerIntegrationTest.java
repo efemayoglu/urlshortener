@@ -24,10 +24,20 @@ public class UrlManagerIntegrationTest {
     @Test
     void addUrlOrGet() {
         String toLink = "https://www."+ UUID.randomUUID()+".com";
+        assertNotNull(toLink);
+
         Url result = urlServiceManager.addUrlOrGet(toLink);
 
-        assertEquals(result.getToLink(), toLink);
+        assertNotNull(result);
+        assertEquals(toLink, result.getToLink());
         assertTrue(result.getId() > 0);
+
+        Url result2 = urlServiceManager.addUrlOrGet(toLink);
+        assertNotNull(result2);
+
+        assertEquals(result.getFromLink(), result2.getFromLink());
+        assertEquals(result.getToLink(), result2.getToLink());
+        assertEquals(result.getId(), result.getId());
     }
 
 }
