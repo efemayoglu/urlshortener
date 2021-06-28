@@ -27,19 +27,7 @@ public class RedirectController {
         this.urlService = urlService;
     }
 
-    @GetMapping("/")
-    public String getUrl(@RequestParam String fromLink){
-        //// TODO: 26.06.2021 Get DB or Redis
-       // var toLink = urlShortenerUtilService.getUrl(fromLink);
-        //System.out.println(toLink);
-    //    return toLink;
 
-      var url = urlService.getUrlByFromLink(fromLink);
-
-      return url.getData().getToLink();
-        //return urlService.getUrlByToLink(toLink).getData().getFromLink()
-
-    }
     @GetMapping("/{fromLink}")
     public void redirectToFullUrl(HttpServletResponse response, @PathVariable String fromLink) {
         try {

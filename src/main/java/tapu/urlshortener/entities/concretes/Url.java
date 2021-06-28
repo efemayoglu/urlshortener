@@ -18,6 +18,8 @@ import java.util.List;
 @Table(name = "url_maps")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","createdUser"})
+
 public class Url {
 
     @Id
