@@ -38,7 +38,7 @@ class UrlMapManagerTest {
     private UrlShortenerUtilService urlShortenerUtilService;
 
     @Test
-    void addUrlIntoUser() {
+    void whenCalledAddUrlIntoUser_itShouldReturnResultDto() {
         User user = mock(User.class);
         String toLink = "test-to-link";
         int userId = 1;
@@ -52,7 +52,7 @@ class UrlMapManagerTest {
     }
 
     @Test
-    void deleteUrlFromUser() {
+    void whenCalledDeleteUrLFromUser_itShouldReturnResultDto() {
         int urlId = 5;
         int userId = 1;
 

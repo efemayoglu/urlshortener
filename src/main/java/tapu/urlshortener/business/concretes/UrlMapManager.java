@@ -13,6 +13,7 @@ import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.concretes.User;
 import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -60,11 +61,12 @@ public class UrlMapManager implements UrlMapService {
     private Result deleteUrlFromUser(User user, Url url){
         var errorResult = checkUserHasUrl(user, url);
         if(errorResult.isSuccess()){
-            var newUrls = new HashSet<Url>();
+            var newUrls = new ArrayList<Url>();
             for(Url u: user.getUrls()){
                 if(u.getId() == url.getId())continue;
                 newUrls.add(u);
             }
+            user.setUrls(newUrls);
             //user.getUrls().removeIf(t-> t.getId() == url.getId());
             userService.save(user);
             return new SuccessResult("Url deleted successfully");

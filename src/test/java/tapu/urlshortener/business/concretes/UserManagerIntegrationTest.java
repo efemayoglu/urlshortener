@@ -17,7 +17,7 @@ public class UserManagerIntegrationTest {
     private UserManager userManager;
 
     @Test
-    void saveWithUserCreateRequest() {
+    void whenCalledRegisterWithExistUser_itShouldErrorResult() {
 
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();

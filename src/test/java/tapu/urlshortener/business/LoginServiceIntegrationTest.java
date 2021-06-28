@@ -26,7 +26,7 @@ public class LoginServiceIntegrationTest {
     }
 
     @Test
-    public void shouldLoginForGeneratedUser(){
+    public void itShouldLoginForGeneratedUser(){
 
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();
@@ -50,7 +50,7 @@ public class LoginServiceIntegrationTest {
     }
 
     @Test
-    public void shouldNotLoginWithEmptyUser(){
+    public void itShouldNotLoginWithEmptyUser(){
         final String username = "";
         final String password = "";
 
@@ -60,7 +60,7 @@ public class LoginServiceIntegrationTest {
     }
 
     @Test
-    public void shouldNotLoginWithGeneratedCredentials(){
+    public void itShouldNotLoginWithGeneratedCredentials(){
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();
 

@@ -44,7 +44,7 @@ public class UsersControllerTest {
 
 
     @Test
-    void add() throws Exception{
+    void whenCalledValidUser_itShouldReturnHTTP200() throws Exception{
 
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();

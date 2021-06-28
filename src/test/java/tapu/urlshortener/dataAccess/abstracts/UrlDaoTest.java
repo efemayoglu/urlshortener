@@ -23,7 +23,7 @@ class UrlDaoTest {
     private UserDao userDao;
 
     @Test
-    void getUrlByFromLink() {
+    void itShouldGetUrlByFromLink() {
         String fromLink = UUID.randomUUID().toString();
         String toLink = UUID.randomUUID().toString();
         Url url = new Url();
@@ -39,7 +39,7 @@ class UrlDaoTest {
     }
 
     @Test
-    void getUrlByToLink() {
+    void itShouldGetUrlByToLink() {
         String fromLink = UUID.randomUUID().toString();
         String toLink = UUID.randomUUID().toString();
         Url url = new Url();
@@ -55,7 +55,7 @@ class UrlDaoTest {
     }
 
     @Test
-    void getUrlsByCreatedUserId() {
+    void itShouldGetUrlsByCreatedUserId() {
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();
         User user = new User();

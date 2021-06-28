@@ -14,7 +14,7 @@ public class UrlShortenerUtilityTestsManager {
     }
 
     @Test
-    public void shouldCreateShortLink(){
+    public void itShouldCreateShortLink(){
         final String link = "https://www.google.com";
         final String expectedValue = "50328aa4";
 
@@ -26,7 +26,7 @@ public class UrlShortenerUtilityTestsManager {
 
     }
     @Test
-    public void shouldGetLink(){
+    public void itShouldGetLinkByFromLink(){
         final String expectedValue = "https://www.google.com";
         final String link = "50328aa4";
 
@@ -39,7 +39,7 @@ public class UrlShortenerUtilityTestsManager {
     }
 
     @Test
-    public void shouldCreateWithTurkishCharacters(){
+    public void itShouldCreateWithTurkishCharacters(){
         final String expectedValue = "d085f9ed";
         final String url = "https://en.wikipedia.org/wiki/Alaca_H%C3%B6y%C3%BCk";
 

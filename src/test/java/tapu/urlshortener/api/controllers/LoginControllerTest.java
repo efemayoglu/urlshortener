@@ -42,7 +42,7 @@ class LoginControllerTest {
     private LoginService loginService;
 
     @Test
-    void whenInValidInput_thenReturns200()  throws Exception{
+    void whenValidInput_thenReturns200()  throws Exception{
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();
 

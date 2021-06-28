@@ -1,3 +1,4 @@
+/home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/entities/dtos/GetUrlsRequest.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/dataAccess/abstracts/UrlDao.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/dataAccess/abstracts/UserDao.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/entities/dtos/LoginRequest.java
@@ -22,6 +23,7 @@
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/entities/concretes/Url.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/concretes/UrlManager.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/concretes/LoginManager.java
+/home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/config/CorsConfig.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/LoginController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/api/controllers/UsersController.java
 /home/efemayoglu/IdeaProjects/urlshortener/src/main/java/tapu/urlshortener/business/abstracts/UserService.java

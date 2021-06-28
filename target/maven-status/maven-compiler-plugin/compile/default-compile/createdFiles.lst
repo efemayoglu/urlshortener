@@ -22,6 +22,7 @@ tapu/urlshortener/entities/concretes/Url.class
 tapu/urlshortener/core/utilities/results/DataResult.class
 tapu/urlshortener/business/abstracts/UserService.class
 tapu/urlshortener/entities/dtos/DeleteLinkRequest.class
+tapu/urlshortener/entities/dtos/GetUrlsRequest.class
 tapu/urlshortener/core/utilities/results/SuccessDataResult.class
 tapu/urlshortener/entities/dtos/UserWithUrlMapResponse.class
 tapu/urlshortener/core/utilities/results/ErrorResult.class

@@ -21,7 +21,7 @@ public class EncodingTests {
     }
 
     @Test
-    public void shouldEncodeTurkishCharacter(){
+    public void itShouldEncodeWithTurkishCharacter(){
         String charSet = "https://en.wikipedia.org/wiki/Alaca_Höyük";
 
         //        String charSet = "https://en.wikipedia.org/wiki/Alaca_H%C3%B6y%C3%BCk";
@@ -35,7 +35,7 @@ public class EncodingTests {
 
     }
     @Test
-    public void shouldMatchTwoString(){
+    public void itShouldBeMatchTwoString(){
         String url1 = urlShortenerUtilService.getUrl("https://en.wikipedia.org/wiki/Alaca_H%C3%B6y%C3%BCk");
         String url2 = urlShortenerUtilService.getUrl("https://en.wikipedia.org/wiki/Alaca_Höyük");
 
@@ -43,7 +43,7 @@ public class EncodingTests {
     }
 
     @Test
-    public void shouldReturnExpected(){
+    public void itShouldReturnExpectedValue(){
         String url1 = urlShortenerUtilService.getUrl("https://en.wikipedia.org/wiki/Alaca_H%C3%B6y%C3%BCk");
         String url2 = urlShortenerUtilService.getUrl("https://en.wikipedia.org/wiki/Alaca_Höyük");
 

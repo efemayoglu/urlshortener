@@ -33,13 +33,13 @@ class UrlMapServiceIntegrationTest {
     }
 
     @Test
-    void shouldFindUrlsByUserId(){
+    void itShouldFindUrlsByUserId(){
         var result = mapService.getByCreatedUser(1);
         assertTrue(result.getData().size() > 0);
     }
 
     @Test
-    void shouldFindUrlByFromLink(){
+    void itShouldFindUrlByFromLink(){
         String toLink ="https://www."+ UUID.randomUUID()+".com";
 
         Url addedUrl = urlService.addUrlOrGet(toLink);
@@ -54,7 +54,7 @@ class UrlMapServiceIntegrationTest {
     }
 
     @Test
-    void shouldNotAddTheSameUrlIntoSameUser(){
+    void itShouldNotAddTheSameUrlIntoSameUser(){
 
         String username = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();
@@ -77,7 +77,7 @@ class UrlMapServiceIntegrationTest {
     }
 
     @Test
-    void shouldAddUrlIntoUser(){
+    void itShouldAddUrlIntoUser(){
 
         User user = new User();
         user.setUsername(UUID.randomUUID().toString());

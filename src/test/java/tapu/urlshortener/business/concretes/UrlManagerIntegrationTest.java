@@ -22,7 +22,7 @@ public class UrlManagerIntegrationTest {
 
 
     @Test
-    void addUrlOrGet() {
+    void whenCalledWithValidLink_itShouldBeVerified() {
         String toLink = "https://www."+ UUID.randomUUID()+".com";
         assertNotNull(toLink);
 

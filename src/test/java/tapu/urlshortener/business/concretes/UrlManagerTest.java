@@ -47,7 +47,7 @@ class UrlManagerTest {
 
     }
     @Test
-    void addUrlOrGet() {
+    void whenCalledWithMockUrl_itShouldReturnUrl() {
 
         String toLink = "https://www.google.com";
         Url urlMock = mock(Url.class);

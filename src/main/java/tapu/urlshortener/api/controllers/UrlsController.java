@@ -9,6 +9,7 @@ import tapu.urlshortener.core.utilities.results.Result;
 import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.dtos.CreateLinkRequest;
 import tapu.urlshortener.entities.dtos.DeleteLinkRequest;
+import tapu.urlshortener.entities.dtos.GetUrlsRequest;
 import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
 import java.util.List;
@@ -26,9 +27,9 @@ public class UrlsController {
         this.urlService = urlService;
     }
 
-    @GetMapping("/getByCreatedUser")
-    public DataResult<List<UserWithUrlMapResponse>> getByCreatedUser(@RequestParam int userId){
-        return this.urlMapService.getByCreatedUser(userId);
+    @PostMapping("/getByCreatedUser")
+    public DataResult<List<UserWithUrlMapResponse>> getByCreatedUser(@RequestBody GetUrlsRequest request){
+        return this.urlMapService.getByCreatedUser(request.getUserId());
     }
     //// TODO: 26.06.2021 add create operation for url 
     //// TODO: 26.06.2021 should not be repeated values for shortener link
