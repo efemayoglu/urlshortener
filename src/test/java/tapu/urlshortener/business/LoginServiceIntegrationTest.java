@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.LoginService;
 import tapu.urlshortener.business.abstracts.UserService;
 import tapu.urlshortener.entities.concretes.User;
+import tapu.urlshortener.entities.dtos.LoginRequest;
 
 import java.util.UUID;
 
@@ -39,7 +40,9 @@ public class LoginServiceIntegrationTest {
         assertNotNull(userSaveResult);
         assertTrue(userSaveResult.getId() > 0);
 
-        var loginResult = loginService.getByUsernameAndPassword(username, password);
+
+
+        var loginResult = loginService.getByUsernameAndPassword(new LoginRequest(username, password));
 
         assertNotNull(loginResult);
         assertTrue(loginResult.isSuccess());
@@ -51,7 +54,7 @@ public class LoginServiceIntegrationTest {
         final String username = "";
         final String password = "";
 
-        var result = loginService.getByUsernameAndPassword(username, password);
+        var result = loginService.getByUsernameAndPassword(new LoginRequest(username, password));
 
         assertNull(result.getData());
     }
@@ -70,7 +73,7 @@ public class LoginServiceIntegrationTest {
         assertNotNull(userSaveResult);
         assertTrue(userSaveResult.getId() > 0);
 
-        var loginResult = loginService.getByUsernameAndPassword(username, "123456");
+        var loginResult = loginService.getByUsernameAndPassword(new LoginRequest(username, username));
         assertEquals(false, loginResult.isSuccess());
     }
 }

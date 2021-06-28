@@ -8,6 +8,7 @@ import tapu.urlshortener.core.utilities.results.ErrorDataResult;
 import tapu.urlshortener.core.utilities.results.SuccessDataResult;
 import tapu.urlshortener.dataAccess.abstracts.UserDao;
 import tapu.urlshortener.entities.concretes.User;
+import tapu.urlshortener.entities.dtos.LoginRequest;
 
 @Service
 public class LoginManager implements LoginService {
@@ -20,8 +21,8 @@ public class LoginManager implements LoginService {
     }
 
     @Override
-    public DataResult<User> getByUsernameAndPassword(String username, String password) {
-        var result = userDao.getByUsernameAndPassword(username, password);
+    public DataResult<User> getByUsernameAndPassword(LoginRequest loginRequest) {
+        var result = userDao.getByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
         if(result == null)
             return new ErrorDataResult<>("username or password is wrong");
         return new SuccessDataResult<>(result);

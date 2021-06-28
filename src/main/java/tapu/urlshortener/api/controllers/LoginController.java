@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/login")
 public class LoginController {
     private LoginService loginService;
 
@@ -25,10 +25,10 @@ public class LoginController {
         this.loginService = userService;
     }
 
-    @PostMapping("/login")
+    @PostMapping
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest){
         return ResponseEntity.ok(this.loginService
-                .getByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()));
+                .getByUsernameAndPassword(loginRequest));
 
     }
 

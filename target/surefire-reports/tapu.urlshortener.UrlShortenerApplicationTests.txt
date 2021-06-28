@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: tapu.urlshortener.UrlShortenerApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! - in tapu.urlshortener.UrlShortenerApplicationTests
-contextLoads  Time elapsed: 0.002 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
-Caused by: java.io.FileNotFoundException: class path resource [test.properties] cannot be opened because it does not exist
-
