@@ -18,7 +18,7 @@ public class UrlShortenerUtilityTestsManager {
         final String link = "https://www.google.com";
         final String expectedValue = "50328aa4";
 
-        var utility = new UrlShortenerUtilManager();
+        UrlShortenerUtilManager utility = new UrlShortenerUtilManager();
 
         String result =  utility.create(link);
 
@@ -30,7 +30,7 @@ public class UrlShortenerUtilityTestsManager {
         final String expectedValue = "https://www.google.com";
         final String link = "50328aa4";
 
-        var utility = new UrlShortenerUtilManager();
+        UrlShortenerUtilManager utility = new UrlShortenerUtilManager();
 
         String result =  utility.getUrl(link);
 
@@ -43,7 +43,7 @@ public class UrlShortenerUtilityTestsManager {
         final String expectedValue = "d085f9ed";
         final String url = "https://en.wikipedia.org/wiki/Alaca_H%C3%B6y%C3%BCk";
 
-        var utility = new UrlShortenerUtilManager();
+        UrlShortenerUtilManager utility = new UrlShortenerUtilManager();
 
         String result =  utility.create(url);
 

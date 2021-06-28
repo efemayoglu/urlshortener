@@ -45,7 +45,7 @@ class UrlMapManagerTest {
 
         when(userManager.getUserById(anyInt())).thenReturn(user);
 
-        var result = mapManager.addUrlIntoUser(userId, toLink);
+        Result result = mapManager.addUrlIntoUser(userId, toLink);
 
         assertNotNull(result);
         assertEquals(true, result.isSuccess());
@@ -79,7 +79,7 @@ class UrlMapManagerTest {
 
         when(userManager.save(any(User.class))).thenReturn(mockUser);
 
-        var result = mapManager.deleteUrlFromUser(userId, urlId);
+        Result result = mapManager.deleteUrlFromUser(userId, urlId);
 
         assertEquals(true, result.isSuccess());
 

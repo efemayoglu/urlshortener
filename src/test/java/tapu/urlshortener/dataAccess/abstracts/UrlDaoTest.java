@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.concretes.User;
+import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
 import java.util.Arrays;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.util.List;
 @SpringBootTest
 class UrlDaoTest {
 
@@ -31,7 +32,7 @@ class UrlDaoTest {
         url.setToLink(toLink);
         urlDao.save(url);
 
-        var result = urlDao.getUrlByFromLink(fromLink);
+        Url result = urlDao.getUrlByFromLink(fromLink);
         assertNotNull(result);
         assertNotEquals(0, result.getId());
         assertEquals(fromLink, url.getFromLink());
@@ -47,7 +48,7 @@ class UrlDaoTest {
         url.setToLink(toLink);
         urlDao.save(url);
 
-        var result = urlDao.getUrlByFromLink(fromLink);
+        Url result = urlDao.getUrlByFromLink(fromLink);
         assertNotNull(result);
         assertNotEquals(0, result.getId());
         assertEquals(fromLink, url.getFromLink());
@@ -79,7 +80,7 @@ class UrlDaoTest {
         assertNotNull(addedUser);
         assertNotEquals(0, addedUser.getId());
 
-        var result = urlDao.getUrlsByCreatedUserId(addedUser.getId());
+        List<UserWithUrlMapResponse> result = urlDao.getUrlsByCreatedUserId(addedUser.getId());
         assertNotNull(result);
 
         assertTrue(result.size() == 1);

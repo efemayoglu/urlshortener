@@ -44,7 +44,7 @@ public class UrlManager implements UrlService {
 
     @Override
     public DataResult<Url> getById(int id) {
-        var result = urlDao.getById(id);
+        Url result = urlDao.getById(id);
         if(result != null)
             return new SuccessDataResult<>(result);
         return new ErrorDataResult<>("url could not found");
@@ -61,17 +61,17 @@ public class UrlManager implements UrlService {
     }
 
     private Url addUrlOrGetExists(String toLink) {
-        var validLink = urlShortenerUtilService.getValidUrl(toLink);
-        var isExist = urlDao.getUrlByToLink(validLink);
+        String validLink = urlShortenerUtilService.getValidUrl(toLink);
+        Url isExist = urlDao.getUrlByToLink(validLink);
 
         if (isExist != null) {
             return isExist;
         } else {
-            var fromLink = urlShortenerUtilService.create(validLink);
-            var url = new Url();
+            String fromLink = urlShortenerUtilService.create(validLink);
+            Url url = new Url();
             url.setFromLink(fromLink);
             url.setToLink(validLink);
-            var result = urlDao.save(url);
+            Url result = urlDao.save(url);
             return result;
         }
     }

@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Service
 public  class UrlShortenerUtilManager implements UrlShortenerUtilService {
 
-    private static final Hashtable<String, String> turkishChars = new Hashtable<>(){
+    private static final Hashtable<String, String> turkishChars = new Hashtable<String, String>(){
         {
             put("Ö","%C3%96");
             put("ö","%C3%B6");
@@ -58,7 +58,7 @@ public  class UrlShortenerUtilManager implements UrlShortenerUtilService {
         for(int i=0;i < url.length();i++){
             char c = url.charAt(i);
             if(turkishChars.get(String.valueOf(c)) != null){
-                var value = turkishChars.get(String.valueOf(c)).toString();
+                String value = turkishChars.get(String.valueOf(c)).toString();
                 validString.append(value);
             }else{
                 validString.append(c);

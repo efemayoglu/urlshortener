@@ -6,10 +6,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.UrlMapService;
 import tapu.urlshortener.business.abstracts.UrlService;
 import tapu.urlshortener.business.abstracts.UserService;
+import tapu.urlshortener.core.utilities.results.DataResult;
+import tapu.urlshortener.core.utilities.results.Result;
 import tapu.urlshortener.entities.concretes.Url;
 import tapu.urlshortener.entities.concretes.User;
+import tapu.urlshortener.entities.dtos.UserWithUrlMapResponse;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,7 +38,7 @@ class UrlMapServiceIntegrationTest {
 
     @Test
     void itShouldFindUrlsByUserId(){
-        var result = mapService.getByCreatedUser(1);
+        DataResult<List<UserWithUrlMapResponse>> result = mapService.getByCreatedUser(1);
         assertTrue(result.getData().size() > 0);
     }
 
@@ -45,7 +49,7 @@ class UrlMapServiceIntegrationTest {
         Url addedUrl = urlService.addUrlOrGet(toLink);
         assertNotNull(addedUrl);
 
-        var result = urlService.getUrlByFromLink(addedUrl.getFromLink());
+        DataResult<Url> result = urlService.getUrlByFromLink(addedUrl.getFromLink());
 
         assertNotNull(result);
         assertNotNull(result.getData());
@@ -72,7 +76,7 @@ class UrlMapServiceIntegrationTest {
         User addedUser = userService.save(user);
         assertNotNull(addedUrl);
 
-        var result = mapService.addUrlIntoUser(addedUser.getId(), toLink);
+        Result result = mapService.addUrlIntoUser(addedUser.getId(), toLink);
         assertFalse(result.isSuccess());
     }
 
@@ -83,12 +87,12 @@ class UrlMapServiceIntegrationTest {
         user.setUsername(UUID.randomUUID().toString());
         user.setPassword(UUID.randomUUID().toString());
 
-        var addedUser = userService.save(user);
+        User addedUser = userService.save(user);
         assertNotNull(addedUser);
 
         final String toLink = "https://www."+UUID.randomUUID()+".com/";
 
-        var result = mapService.addUrlIntoUser(addedUser.getId(), toLink);
+        Result result = mapService.addUrlIntoUser(addedUser.getId(), toLink);
         assertNotNull(result);
         assertTrue(result.isSuccess());
 

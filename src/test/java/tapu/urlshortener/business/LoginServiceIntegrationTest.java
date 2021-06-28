@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tapu.urlshortener.business.abstracts.LoginService;
 import tapu.urlshortener.business.abstracts.UserService;
+import tapu.urlshortener.core.utilities.results.DataResult;
 import tapu.urlshortener.entities.concretes.User;
 import tapu.urlshortener.entities.dtos.LoginRequest;
+import tapu.urlshortener.entities.dtos.LoginResponse;
 
 import java.util.UUID;
 
@@ -35,14 +37,14 @@ public class LoginServiceIntegrationTest {
         user.setUsername(username);
         user.setPassword(password);
 
-        var userSaveResult = userService.save(user);
+        User userSaveResult = userService.save(user);
 
         assertNotNull(userSaveResult);
         assertTrue(userSaveResult.getId() > 0);
 
 
 
-        var loginResult = loginService.getByUsernameAndPassword(new LoginRequest(username, password));
+        DataResult<LoginResponse> loginResult = loginService.getByUsernameAndPassword(new LoginRequest(username, password));
 
         assertNotNull(loginResult);
         assertTrue(loginResult.isSuccess());
@@ -54,7 +56,7 @@ public class LoginServiceIntegrationTest {
         final String username = "";
         final String password = "";
 
-        var result = loginService.getByUsernameAndPassword(new LoginRequest(username, password));
+        DataResult<LoginResponse>  result = loginService.getByUsernameAndPassword(new LoginRequest(username, password));
 
         assertNull(result.getData());
     }
@@ -68,12 +70,12 @@ public class LoginServiceIntegrationTest {
         user.setUsername(username);
         user.setPassword(password);
 
-        var userSaveResult = userService.save(user);
+        User userSaveResult = userService.save(user);
 
         assertNotNull(userSaveResult);
         assertTrue(userSaveResult.getId() > 0);
 
-        var loginResult = loginService.getByUsernameAndPassword(new LoginRequest(username, username));
+        DataResult<LoginResponse>  loginResult = loginService.getByUsernameAndPassword(new LoginRequest(username, username));
         assertEquals(false, loginResult.isSuccess());
     }
 }

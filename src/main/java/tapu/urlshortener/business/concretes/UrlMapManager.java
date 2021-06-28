@@ -36,7 +36,7 @@ public class UrlMapManager implements UrlMapService {
     }
 
     public Result addUrlIntoUser(int userId, String toLink){
-        var userDataResult = checkUserById(userId);
+        DataResult<User> userDataResult = checkUserById(userId);
         if(userDataResult.isSuccess()){
             return addOrUpdateUserUrl(userDataResult.getData(), toLink);
         }
@@ -47,10 +47,10 @@ public class UrlMapManager implements UrlMapService {
 
     @Override
     public Result deleteUrlFromUser(int userId, int urlId) {
-        var userDataResult = checkUserById(userId);
+        DataResult<User> userDataResult = checkUserById(userId);
 
         if(userDataResult.isSuccess()){
-            var checkUrlResult = checkUrlByToLink(urlId);
+            DataResult<Url> checkUrlResult = checkUrlByToLink(urlId);
             if(checkUrlResult.isSuccess()){
                 return deleteUrlFromUser(userDataResult.getData(), checkUrlResult.getData());
             }
@@ -59,9 +59,9 @@ public class UrlMapManager implements UrlMapService {
         return new ErrorResult("User could not found.");
     }
     private Result deleteUrlFromUser(User user, Url url){
-        var errorResult = checkUserHasUrl(user, url);
+        Result errorResult = checkUserHasUrl(user, url);
         if(errorResult.isSuccess()){
-            var newUrls = new ArrayList<Url>();
+            ArrayList<Url> newUrls = new ArrayList<Url>();
             for(Url u: user.getUrls()){
                 if(u.getId() == url.getId())continue;
                 newUrls.add(u);
@@ -76,7 +76,7 @@ public class UrlMapManager implements UrlMapService {
     }
 
     private DataResult<Url> checkUrlByToLink(int urlId){
-        var urlIsExist = urlService.getById(urlId);
+        DataResult<Url> urlIsExist = urlService.getById(urlId);
         if(urlIsExist.isSuccess()){
             return new SuccessDataResult<>(urlIsExist.getData());
         }
@@ -85,7 +85,7 @@ public class UrlMapManager implements UrlMapService {
 
 
     private DataResult<User> checkUserById(int userId){
-        var user = userService.getUserById(userId);
+        User user = userService.getUserById(userId);
         if(user!= null){
             return new SuccessDataResult<>(user);
         }
@@ -94,10 +94,10 @@ public class UrlMapManager implements UrlMapService {
 
 
     private Result addOrUpdateUserUrl(User user, String toLink){
-        var url = urlService.addUrlOrGet(toLink);
+        Url url = urlService.addUrlOrGet(toLink);
         //var user = userService.getUserById(userId);
 
-        var result = getErrorResult(user, url);
+        Result result = getErrorResult(user, url);
 
         if(result.isSuccess()){
             return addUrlIntoUser(user, url);
@@ -108,7 +108,7 @@ public class UrlMapManager implements UrlMapService {
     }
 
     private Result addUrlIntoUser(User user, Url url) {
-        var isAdded = user.getUrls().add(url);
+        Boolean isAdded = user.getUrls().add(url);
 
         if(isAdded) {
             userService.save(user);
