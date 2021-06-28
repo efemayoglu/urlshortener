@@ -11,6 +11,7 @@ tapu/urlshortener/entities/dtos/UserCreateRequest.class
 tapu/urlshortener/entities/dtos/LoginRequest.class
 tapu/urlshortener/business/concretes/UserManager.class
 tapu/urlshortener/business/abstracts/UrlService.class
+tapu/urlshortener/config/CorsConfig.class
 tapu/urlshortener/core/utilities/results/ErrorDataResult.class
 tapu/urlshortener/core/utilities/utility/UrlShortenerUtilManager$1.class
 tapu/urlshortener/business/concretes/UrlManager.class
@@ -27,6 +28,7 @@ tapu/urlshortener/core/utilities/results/SuccessDataResult.class
 tapu/urlshortener/entities/dtos/UserWithUrlMapResponse.class
 tapu/urlshortener/core/utilities/results/ErrorResult.class
 tapu/urlshortener/UrlShortenerApplication.class
+tapu/urlshortener/config/CorsConfig$1.class
 tapu/urlshortener/business/concretes/UrlMapManager.class
 tapu/urlshortener/core/utilities/utility/UrlShortenerUtilManager.class
 tapu/urlshortener/core/utilities/results/SuccessResult.class
